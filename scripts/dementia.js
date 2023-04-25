@@ -13,9 +13,9 @@ let dementia_level_slider;
 const max_dementia_level = 200;
 let slider_delta;
 
-const n_operators = 5;
+const n_operators = 4;
 let operations = [];
-const operators = [fill_black, fill_gray, fill_blur, fill_invert, fill_clone];
+const operators = [fill_black, fill_gray, fill_blur, /*fill_invert,*/ fill_clone];
 
 let save_button;
 
@@ -65,8 +65,8 @@ function drawImage() {
     input_image_blur = input_image.get();
     input_image_blur.filter(BLUR);
 
-    input_image_invert = input_image.get();
-    input_image_invert.filter(INVERT);
+    // input_image_invert = input_image.get();
+    // input_image_invert.filter(INVERT);
 
     input_image_clone = input_image.get();
 
