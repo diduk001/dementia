@@ -10,8 +10,9 @@ let block_cols;
 let block_rows;
 
 let dementia_level_slider;
-const max_dementia_level = 350;
+const max_dementia_level = 200;
 let slider_delta;
+const slider_delta_k = 40;
 
 const n_operators = 4;
 let operations = [];
@@ -28,14 +29,20 @@ function setup() {
   dementia_level_slider.parent("slider-holder");
 
   save_button = createButton("save image");
-  save_button.parent("button-holder");
+  save_button.parent("save-button-holder");
   save_button.mousePressed(buttonClicked);
+
+  draw_button = createButton("redraw");
+  draw_button.parent("redraw-button-holder");
+  draw_button.mousePressed(drawAll);
 
   noStroke();
   fill(0, 0, 0);
+
+  noLoop();
 }
 
-function draw() {
+function drawAll() {
   if (input_image) {
     drawImage();
   }
@@ -74,7 +81,7 @@ function drawImage() {
     block_rows = Math.floor(input_image.height / block_height_px);
 
     operations = [];
-    slider_delta = Math.ceil(block_cols * block_rows / max_dementia_level);
+    slider_delta = Math.ceil(block_cols * block_rows / max_dementia_level) * slider_delta_k;
     for (let i = 0; i < slider_delta * max_dementia_level; i++) {
       block_row = Math.floor(Math.random() * block_rows);
       block_col = Math.floor(Math.random() * block_cols);
@@ -82,6 +89,7 @@ function drawImage() {
       operations.push([block_row, block_col, operator]);
     }
 
+    print("Here");
     image(input_image, 0, 0, width, height);
   }
 }
