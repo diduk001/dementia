@@ -10,7 +10,7 @@ let block_cols;
 let block_rows;
 
 let dementia_level_slider;
-const max_dementia_level = 200;
+const max_dementia_level = 350;
 let slider_delta;
 
 const n_operators = 4;
